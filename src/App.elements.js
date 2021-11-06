@@ -1,31 +1,15 @@
 import styled from "styled-components";
 
+const magenta = "#9E2B2F";
+const magentaWithOpacity = "#9E2B2F55";
+
 export const CalendarArea = styled.div`
-  width: 55%;
+  width: 80%;
   margin: auto;
-  padding: 0 3%;
 
-  box-sizing: border-box;
-
-  background: linear-gradient(
-    315deg,
-    #ffdbdb 0%,
-    rgba(255, 242, 242, 0.35) 100%
-  );
-
-  * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  & > * {
+    margin: 5% 0;
   }
-`;
-export const MonthArea = styled.div`
-  margin: 0;
-  padding: 1rem;
-
-  text-align: center;
-  font-size: 2rem;
-  letter-spacing: 1rem;
 `;
 
 export const MonthChangeArea = styled.div`
@@ -42,6 +26,8 @@ export const MonthChangeButton = styled.button`
 
   cursor: pointer;
 
+  font-size: 0.8rem;
+
   &:hover {
     color: #cccccc;
     border-bottom: 1px solid #cccccc;
@@ -53,9 +39,7 @@ export const WeekDaysArea = styled.div`
   grid-template-columns: repeat(7, 1fr);
 
   text-align: center;
-  p {
-    padding: 0.5rem 0;
-  }
+  font-size: 0.8rem;
 
   p:first-child {
     color: #ff8d8d;
@@ -69,30 +53,61 @@ export const WeekDaysArea = styled.div`
 export const DatesArea = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: ${(p) => `repeat(${p.rows}, 8vh);`};
 `;
 
 export const DateItem = styled.div`
   display: flex;
   flex-direction: column;
 
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 0.1rem;
 
-  border: 1px solid #ff8c8c;
+  border-top: 1px solid ${magenta};
+  border-right: 1px solid ${magenta};
+  ${(p) => (p.day === 0 ? `border-left: 1px solid ${magenta};` : "")}
+  ${(p) => (p.last ? `border-bottom: 1px solid ${magenta};` : "")}
+
+  position: relative;
+
+  ${(p) => (p.picked ? `background-color: ${magentaWithOpacity};` : "")}
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+  }
 `;
 
 export const DateNum = styled.p`
-  width: 100%;
   margin-bottom: 5%;
 
   color: ${(props) =>
-    props.day === "sun" ? "#FF8D8D" : props.day === "sat" ? "#56A4FF" : "#000"};
+    props.day === 0 ? "#FF8D8D" : props.day === 6 ? "#56A4FF" : "#000"};
   text-align: center;
   font-size: 0.7rem;
 `;
 
-export const DateImg = styled.img`
-  width: 100%;
-  align-self: center;
-  justify-self: flex-end;
+export const SelectedDate = styled.p`
+  text-align: center;
+  margin: 3% 0;
+`;
+
+export const TimeBlockSection = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const TimeBlock = styled.div`
+  border: 1px solid ${magenta};
+  width: 70%;
+  text-align: center;
+  padding: 1vh 0;
+  border-radius: 3px;
+  margin: 1% auto;
+
+  ${(p) => (p.picked ? `background-color: ${magentaWithOpacity}` : "")}
 `;

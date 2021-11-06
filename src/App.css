@@ -1,9 +1,5 @@
-.react-calendar {
-  width: 70%;
-  margin: 10vh auto;
-}
-
-.react-calendar__tile {
-  height: 5vh;
-  background-color: red;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
