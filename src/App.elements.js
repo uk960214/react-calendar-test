@@ -3,6 +3,12 @@ import styled from "styled-components";
 const magenta = "#9E2B2F";
 const magentaWithOpacity = "#9E2B2F55";
 
+export const SectionTitle = styled.p`
+  margin: 10% 0;
+  text-align: center;
+  font-size: 1.5rem;
+`;
+
 export const CalendarArea = styled.div`
   width: 80%;
   margin: auto;
@@ -71,6 +77,7 @@ export const DateItem = styled.div`
 
   ${(p) => (p.picked ? `background-color: ${magentaWithOpacity};` : "")}
 
+  transition: all 300ms ease-in;
   &::after {
     content: "";
     position: absolute;
@@ -99,6 +106,7 @@ export const SelectedDate = styled.p`
 export const TimeBlockSection = styled.section`
   display: flex;
   flex-direction: column;
+  margin: 5% 0;
 `;
 
 export const TimeBlock = styled.div`
@@ -108,6 +116,63 @@ export const TimeBlock = styled.div`
   padding: 1vh 0;
   border-radius: 3px;
   margin: 1% auto;
+  transition: all 300ms ease-in;
 
   ${(p) => (p.picked ? `background-color: ${magentaWithOpacity}` : "")}
+`;
+
+export const SetTimeSection = styled.div`
+  width: 80%;
+  margin: auto;
+`;
+
+export const WeekDayRow = styled.div`
+  margin: 3vh 0;
+  display: flex;
+  align-items: center;
+  gap: 5%;
+`;
+
+export const RowLabel = styled.p`
+  border-right: 1px solid #000;
+  padding-right: 3vw;
+`;
+
+export const TimeScroll = styled.div`
+  display: grid;
+  grid-template-columns: repeat(11, 10vw);
+  grid-template-rows: repeat(1, 15vw);
+  overflow: scroll;
+  position: relative;
+  z-index: 1;
+  padding-left: 3vw;
+`;
+
+export const TimeScrollItem = styled.div`
+  text-align: center;
+`;
+
+export const TimeIndex = styled.div`
+  transform: translateX(-50%);
+  position: relative;
+  z-index: 5;
+  font-size: 0.5rem;
+  margin-bottom: 1vh;
+`;
+
+export const TimeSelectBox = styled.div`
+  height: 8vw;
+  padding: 2vw;
+  border-right: 1px solid ${magenta};
+  border-top: 1px solid ${magenta};
+  border-bottom: 1px solid ${magenta};
+
+  transition: all 300ms ease-in;
+  ${(p) =>
+    p.first
+      ? `
+    border-left: 1px solid ${magenta};`
+      : ""}
+
+  ${(p) => (p.selected ? `background-color: ${magentaWithOpacity}` : "")}
 `;
